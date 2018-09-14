@@ -1,0 +1,36 @@
+﻿<Window x:Class="SessionsControllerServer.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        mc:Ignorable="d"
+        Title="SessionControllerServer" Height="283.794" Width="320" WindowStyle="ToolWindow" ResizeMode="NoResize">
+    <Grid Margin="3,3,3,3">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+        <ListBox Grid.Row="0" Height="200" Margin="5"
+                 ItemsSource="{Binding UserSessions}" SelectedItem="{Binding SelectedUser}" >
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="90" SharedSizeGroup="Column1"/>
+                            <ColumnDefinition Width="90" SharedSizeGroup="Column2"/>
+                            <ColumnDefinition Width="90" SharedSizeGroup="Column3"/>
+                        </Grid.ColumnDefinitions>
+                        <TextBlock Grid.Column="0" Text="{Binding ComputerName}"/>
+                        <TextBlock Grid.Column="1" Text="{Binding UserName}"/>
+                        <TextBlock Grid.Column="2" Text="{Binding Status}"/>
+                    </Grid>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
+        <Button Grid.Row="1" Margin="5,5,161,5" 
+                Content="Logoff" Command="{Binding LogoutUserCommand}" CommandParameter="{Binding SelectedUser}" />
+        <Button Grid.Row="1" Margin="161,5,5,5" 
+            Content="Lock" Command="{Binding LockUserCommand}" CommandParameter="{Binding SelectedUser}"  />
+
+    </Grid>
+</Window>
